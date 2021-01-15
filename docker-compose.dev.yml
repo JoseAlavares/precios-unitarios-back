@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+    precios-unitarios-db:
+        image: postgres:12
+        container_name: peprecios-unitarios-db        
+        restart: unless-stopped
+        environment:
+        - POSTGRES_DB=precios_unitarios_dev
+        - POSTGRES_PASSWORD=admin
+        ports: 
+        - 5436:5432        
+    
+    precios-unitarios-api:
+        image: jalvarez/precios-unitarios-back
+        container_name: precios-unitarios-api
+        restart: unless-stopped
+        environment:
+        - DB_USER=postgres
+        - DB_PASSWORD=admin
+        - DB_NAME=precios_unitarios_dev
+        - DB_HOST=precios-unitarios-db
+        - DB_DIALECT=postgres
+        - DB_PORT=5432
+        - APP_PORT=3001
+        - JWT_SECRET=1234  
+        build: 
+            context: ./
+            dockerfile: ./Dockerfile.local
+        ports: 
+        - '3005:3001'
+        - '9232:9229'
+        volumes: 
+        - ./src:/home/node/app/src
+        depends_on: 
+        - precios-unitarios-db

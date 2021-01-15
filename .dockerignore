@@ -1,0 +1,4 @@
+node_modules
+docker-compose.dev.yml
+Dockerfile
+Dockerfile.local

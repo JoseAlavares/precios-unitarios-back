@@ -1,0 +1,37 @@
+{
+  "name": "el-pelon-system",
+  "version": "1.0.0",
+  "description": "Sistema para dulceria el pelon",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha test/*.test.js --timeout 15000"
+  },
+  "author": "Jose Francisco Alvarez Valdez <francisco.alvarez@ulfix.com>",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.794.0",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "global": "^4.4.0",
+    "google-auth-library": "^6.1.3",
+    "helmet": "^4.1.1",
+    "image-thumbnail": "^1.0.11",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.2.0",
+    "nodemailer": "^6.4.15",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.4.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sinon": "^9.2.0"
+  }
+}

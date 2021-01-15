@@ -1,0 +1,14 @@
+FROM node:12.16.3
+LABEL maintainer="Jose Francisco Alvarez Valdez<francisco.alvarez@ulfix.com>"
+RUN apt update && apt install nano -y
+RUN mkdir -p /home/node/app/tmp
+WORKDIR /home/node/app
+RUN mkdir node_modules && chown -R node:node /home/node/app
+USER node
+COPY package*.json ./
+COPY server.js .
+RUN npm install
+EXPOSE 3000
+USER root
+RUN npm install -g nodemon sequelize sequelize-cli mocha pg
+CMD ["nodemon", "server.js"]
