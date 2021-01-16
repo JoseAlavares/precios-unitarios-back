@@ -8,7 +8,9 @@ services:
         - POSTGRES_DB=precios_unitarios_dev
         - POSTGRES_PASSWORD=admin
         ports: 
-        - 5436:5432        
+        - 5436:5432
+        networks:
+        - precios-unitarios-network        
     
     precios-unitarios-api:
         image: jalvarez/precios-unitarios-back
@@ -22,7 +24,8 @@ services:
         - DB_DIALECT=postgres
         - DB_PORT=5432
         - APP_PORT=3001
-        - JWT_SECRET=1234  
+        - JWT_SECRET=1234
+        - ROOT=/home/node/app
         build: 
             context: ./
             dockerfile: ./Dockerfile.local
@@ -33,3 +36,9 @@ services:
         - ./src:/home/node/app/src
         depends_on: 
         - precios-unitarios-db
+        networks:
+        - precios-unitarios-network
+
+networks:
+    precios-unitarios-network:
+        driver: bridge
