@@ -55,7 +55,7 @@ router
     .post('/authentication', middleware.checkApiKey, authentication)
     .get('/auth/google', passport.authenticate('google', { scope: ['profile','email'] }))
     .get('/googleRedirect', passport.authenticate('google'), googleRedirect)
-    .post('/validate-token', middleware.checkApiKey, validToken)
+    .post('/validate-token', middleware.isLoggedIn, validToken)
 
 //Company services
 router

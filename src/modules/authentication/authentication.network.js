@@ -53,6 +53,7 @@ exports.authentication = async (req, resp) => {
     }
     
     if(errors.length) {
+        console.error(errors)
         return responseNetwork(
             resp,
             true,
@@ -95,7 +96,7 @@ exports.authenticationGoogle = async (req, resp) => {
 }
 
 exports.validToken = async (req, resp) => {
-    const AuthenticationController = require(`${ROOT}/src/modules/authentication/controller/authentication.controller`)
+    /*const AuthenticationController = require(`${ROOT}/src/modules/authentication/controller/authentication.controller`)
     const Auth = new AuthenticationController()
     const result = Auth.validToken(req.body.token)
 
@@ -106,7 +107,7 @@ exports.validToken = async (req, resp) => {
             401,
             'Error'
         )        
-    }
+    }*/
 
     return responseNetwork(
         resp,
