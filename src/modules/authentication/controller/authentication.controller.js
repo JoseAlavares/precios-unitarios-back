@@ -17,7 +17,6 @@ class AuthenticationController {
         )        
     }
 
-
     async loginUser(email, password) {
         try {
             const user = await UserModel.findOne({
@@ -46,7 +45,7 @@ class AuthenticationController {
             const data = {sub: user.dataValues.id, name: user.dataValues.email} 
             return {message: 'Successful', token: generateToken(data)}
         } catch (e) {
-            console.error(e)
+            console.error(e.message)
             return {
                 error: true, 
                 message: 'Error in the server', 

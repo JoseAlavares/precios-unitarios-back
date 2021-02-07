@@ -29,33 +29,26 @@ router.get("/", (req, resp) => {
 const MODULES_ROUTES = `${__dirname}/modules`
 
 //Authentication 
-const { 
-    googleRedirect,
-    authentication,
-    validToken,
-} = require(`${MODULES_ROUTES}/authentication/authentication.network`)
+const { authentication } = require(`${MODULES_ROUTES}/authentication/network/authentication.network`)
 
 //Company
-const {
-    createCompany,
-} = require(`${MODULES_ROUTES}/company/company.network`)
+const { createCompany } = require(`${MODULES_ROUTES}/company/company.network`)
 
 //User
-const {
-    registerUser,
-} = require(`${MODULES_ROUTES}/user/user.network`)
+const { registerUser } = require(`${MODULES_ROUTES}/user/user.network`)
 
 //Registry
-const {
-    register
-} = require(`${MODULES_ROUTES}/registry/register-user-company.network`)
+const { register } = require(`${MODULES_ROUTES}/registry/register-user-company.network`)
+
+//Plan
+const { getAllPlans } = require(`${MODULES_ROUTES}/plan/get-all-plans.network`)
 
 //Authentication services
 router
     .post('/authentication', middleware.checkApiKey, authentication)
-    .get('/auth/google', passport.authenticate('google', { scope: ['profile','email'] }))
-    .get('/googleRedirect', passport.authenticate('google'), googleRedirect)
-    .post('/validate-token', middleware.checkApiKey, validToken)
+    //.get('/auth/google', passport.authenticate('google', { scope: ['profile','email'] }))
+    //.get('/googleRedirect', passport.authenticate('google'), googleRedirect)
+    //.post('/validate-token', middleware.isLoggedIn, validToken)
 
 //Company services
 router
@@ -67,6 +60,9 @@ router
 
 router
     .post('/registry',middleware.checkApiKey, register)
+
+router    
+    .get('/plan', getAllPlans)    
 
 module.exports = router;
 
