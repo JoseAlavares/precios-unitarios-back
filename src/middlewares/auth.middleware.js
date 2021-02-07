@@ -1,6 +1,6 @@
 const {
     responseNetwork,
-    verifyToken
+    validateToken,
 } = require("../utils/functions")
 const ApiKeyModel = require("../models/api-key.model")
 
